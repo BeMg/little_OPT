@@ -9,13 +9,21 @@ public class ASTCompiler {
         }
 
         ASTNode Name = curr.getChild().get(0);
+        f.setName(Name.getValue());
+
         ASTNode Args = curr.getChild().get(1);
+        handleArgs(f, Args);
 
         ASTNode FunctionBody = curr.getChild().get(2);
-
         compileBody(FunctionBody, f);
 
         return f;
+    }
+
+    static void handleArgs(Function f, ASTNode Args) {
+        for(ASTNode n: Args.getChild()) {
+            f.addArgs(n.getValue());
+        }
     }
 
     static Instruction compileBody(ASTNode curr, Function f) {
@@ -37,6 +45,7 @@ public class ASTCompiler {
                 break;
             case VAR:
                 I.setType(InstType.VAR);
+                I.setValue(curr.getValue());
                 break;
             case RETURN:
                 I.setType(InstType.RETURN);

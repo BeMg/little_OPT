@@ -5,11 +5,31 @@ public class Function {
     ArrayList<BasicBlock> BBs;
     ArrayList<Instruction> allInst;
     int current_ID;
+    String name;
+    ArrayList<String> args;
+
+    public void addArgs(String _var) {
+        this.args.add(_var);
+    }
+
+    public String getArgs(int index) {
+        return this.args.get(index);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Function() {
         this.BBs = new ArrayList<BasicBlock>();
         this.allInst = new ArrayList<Instruction>();
         this.current_ID = 0;
+        this.name = new String();
+        this.args = new ArrayList<String>();
     }
 
     public int distributeID() {
@@ -31,6 +51,8 @@ public class Function {
     }
 
     public void dump() {
+        System.out.print(this.name + ": ");
+        System.out.println(this.args);
         for(Instruction I: this.allInst) {
             I.dump();
         }

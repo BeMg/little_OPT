@@ -14,6 +14,7 @@ public class Instruction {
         this.type = null;
         this.Operand = new ArrayList<Instruction>();
         this.ID = -1;
+        this.Value = new String();
     }
 
     public InstType getType() {
@@ -29,6 +30,8 @@ public class Instruction {
     ArrayList<Instruction> Operand;
 
     int ID;
+
+    String Value;
 
     public void addOperand(Instruction Inst) {
         this.Operand.add(Inst);
@@ -47,7 +50,19 @@ public class Instruction {
             System.out.print("R" + I.getID());
             System.out.print(" ");
         }
+        if(this.Value != null) {
+            System.out.print(this.Value);
+        }
         System.out.print("\n");
     }
+
+    public String getValue() {
+        return Value;
+    }
+
+    public void setValue(String value) {
+        Value = value;
+    }
+
 
 }
